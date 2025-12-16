@@ -18,5 +18,5 @@ So inputing something like:
 	"@0n - Sgt. Pepper's @m:@s" 
 will produce something like:
 	"01 - Sgt. Pepper's 2:50"
-
+Currently the MusicBrainz portion doesn't work with CD-ROMS but I want to fix that at somepoint
 
