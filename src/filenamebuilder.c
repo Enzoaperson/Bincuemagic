@@ -32,7 +32,7 @@ int filenamebuilder(char input_name[], char output_name[], tableofcontents toc, 
 				x_argv++;
 			}
 			if(input_name[x_argv+1] == 'n'){ // @n -> Track Number
-				if(track_num <= 9){
+				if(track_num <= 8){
 					output_name[x_string] = '0' + (track_num+1);
 					x_argv++;
 				}
