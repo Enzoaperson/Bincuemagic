@@ -12,6 +12,7 @@
 // Global flags
 char DEBUG = 0;
 char MUSICBRAINZ_LOOKUP = 1;
+char EXPORT_TO_WAVE = 0;
 
 int file_status(char file[]){
 	FILE* file_storage;
@@ -63,6 +64,13 @@ int main(int argc, char *argv[]){
 				case 'd': case 'D':
 					DEBUG = 1;
 					i--;
+					break;
+				case 'w': case 'W': //Add .wav header to file outputs
+					EXPORT_TO_WAVE = 1;
+					i--;
+					break;
+
+
 			}
 			i++;
 
@@ -77,6 +85,7 @@ int main(int argc, char *argv[]){
 		printf("Error: No BIN File was given!\n");
 		return 0;
 	}
+	
 	//Create TOC
 	tableofcontents toc = cuehandler(toc_file);
 	FILE* opened_bin_file;
@@ -110,5 +119,4 @@ int main(int argc, char *argv[]){
 	}
 	printf("Splitting Complete!\n");
 	return 0;
-
 }

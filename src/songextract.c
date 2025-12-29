@@ -2,6 +2,11 @@
 #include "constants.h"
 
 extern char DEBUG;
+extern char EXPORT_TO_WAVE;
+
+char wave_header[] = {0x52, 0x49, 0x46, 0x46, 0x44, 0x9D, 0x4E, 0x03, 0x57, 0x41, 0x56, 0x45, 0x66, 0x6D, 0x74, 0x20, 0x10, 0x00, 0x00, 
+	0x00, 0x01, 0x00, 0x02, 0x00, 0x44, 0xAC, 0x00, 0x00, 0x10, 0xB1, 0x02, 0x00, 0x04, 0x00, 0x10, 0x00, 0x64, 0x61, 0x74,
+        0x61, 0x20, 0x9D, 0x4E, 0x03};
 
 int songextract(char *bin_file_name, int starting_bytes, int length_bytes, char *output_file_name){
 	if(DEBUG){printf("Starting Input: %d,%d\n", starting_bytes, length_bytes);}
@@ -25,7 +30,12 @@ int songextract(char *bin_file_name, int starting_bytes, int length_bytes, char 
 	}
 	if(DEBUG){printf("Fixed Input: %d,%d\n", starting_bytes, length_bytes);}
 	fseek(bin_file, starting_bytes, SEEK_SET); //Getting into position
-
+	if(EXPORT_TO_WAVE){
+		if(DEBUG){printf("Adding WAV header\n");}
+		for(int i = 0; i < 0x2C; i++){
+			fputc(wave_header[i], output_file);
+		}
+	}
 	for(int i = 0; i < length_bytes; i++){
 		fputc(fgetc(bin_file), output_file);
 	}
