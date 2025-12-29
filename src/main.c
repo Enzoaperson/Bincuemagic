@@ -44,7 +44,9 @@ int main(int argc, char *argv[]){
 	char *bin_file = NULL;
 	char *output_name = NULL;
 	if (argc < 2){
-		printf("$ a.out -c file.cue -b file.bin -o \"@n - Track Name @m:@s\" \n");
+		printf("$ a.out -c path/to/cuefile.cue -b path/to/binfile.bin -o \"path/of/output/@n - Track Name @m:@s.wav\" -w \n");
+		printf("-w -> Output as a WAV file\n");
+		printf("-d -> Debug mode\n");
 		return 0;
 	}
 
