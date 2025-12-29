@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sha1.h>
-#include <b64/cencode.h>
 #include "datatypes.h"
 #include "constants.h"
 extern char DEBUG;
@@ -31,13 +30,15 @@ char discid_gen(tableofcontents toc){
 		SHA1Update(&sha, (unsigned char*)buffer, length);
 	}
 	SHA1Final(sha1_output, &sha);
-	if(DEBUG){
+	if(1){
+		printf("\n");
 		for(int i = 0; i < SHA1_DIGEST_LENGTH; i++){ //Print SHA1
-			printf("%x", sha1_output[i]);
+			printf("%02x", sha1_output[i]);
 		}
 		printf("\n");
 	}
-
+	printf("\n");
+/*
 //Base64 Encoding
 	base64_encodestate s;
 	unsigned char *base64_output = (unsigned char*)malloc(BASE64_OUTPUT_SIZE);
@@ -66,7 +67,7 @@ char discid_gen(tableofcontents toc){
 		if(DEBUG){printf("- %d - %x\n", i, base64_output[i]);}
 	}
 	free(base64_output);
-	base64_output = base64_counter = NULL;
+	base64_output = base64_counter = NULL;*/
 	free(sha1_output);
 	printf("\n");
 	return 0;
